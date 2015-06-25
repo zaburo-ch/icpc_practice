@@ -9,7 +9,36 @@ typedef pair<int,int> P;
 int n;
 int ba[10];
 
-bool all(int,int,int);
+bool dfs(int end, int l, int r){
+  if (end == 10){
+    return true;
+  }
+  //left
+  if (l < ba[end]){
+    return dfs(end+1,ba[end],r);
+  }
+  //right
+  if (r < ba[end]){
+    return dfs(end+1,l,ba[end]);
+  }
+  return false;
+}
+
+
+/*
+bool all(int end,int l,int r){
+  if(end==10){
+    return true;
+  }
+  if(ba[end]>l){
+    return all(end+1,ba[end],r);
+  }
+  if(ba[end]>r){
+    return all(end+1,l,ba[end]);
+  }
+  return false;
+}
+*/
 
 int main(){
   cin >> n;
@@ -25,15 +54,3 @@ int main(){
   }
 }
 
-bool all(int end,int l,int r){
-  if(end==10){
-    return true;
-  }
-  if(ba[end]>l){
-    return all(end+1,ba[end],r);
-  }
-  if(ba[end]>r){
-    return all(end+1,l,ba[end]);
-  }
-  return false;
-}
